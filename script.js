@@ -9,3 +9,23 @@ function getComputerChoice(){
             return "Scissors";
     }
 }
+
+function getPlayerChoice(){
+    let keepGoing = true;
+
+    while (keepGoing){
+        let choice = prompt("Rock\/Paper\/Scissors").toLowerCase();
+
+        if (choice === "rock") {
+            return "Rock";
+        } else if (choice === "paper") {
+            return "Paper";
+        } else if (choice === "scissors") {
+            return "Scissors";
+        } else {
+            alert("False input, try again!");
+        }
+    }
+}
+
+console.log(getPlayerChoice());
