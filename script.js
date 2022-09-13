@@ -28,4 +28,35 @@ function getPlayerChoice(){
     }
 }
 
-console.log(getPlayerChoice());
+function playRound(playerChoice, computerChoice){
+    if (playerChoice === "Rock") {
+        switch (computerChoice) {
+            case "Rock":
+                return "Draw! Rock equals Rock";
+            case "Paper":
+                return "Lose! Rock covered by Paper";
+            case "Scissors":
+                return " Win! Rock beats Scissors";
+        }
+    } else if (playerChoice === "Paper") {
+        switch (computerChoice) {
+            case "Rock":
+                return " Win! Paper covers Rock";
+            case "Paper":
+                return "Draw! Paper equals Paper";
+            case "Scissors":
+                return "Lose! Paper cut by Scissors";
+        }
+    } else if (playerChoice === "Scissors") {
+        switch (computerChoice) {
+            case "Rock":
+                return "Lose! Scissors beaten by Rock";
+            case "Paper":
+                return " Win! Scissors cuts Paper";
+            case "Scissors":
+                return "Draw! Scissors equals Scissors";
+        }
+    }
+}
+
+console.log(playRound(getPlayerChoice(), getComputerChoice()));
