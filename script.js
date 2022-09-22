@@ -87,4 +87,24 @@ function game() {
 
 let playerScore = 0;
 let computerScore = 0;
-game();
+
+const buttons = document.querySelectorAll("button");
+const result = document.querySelector("#result");
+const divPlayerScore = document.querySelector("#player");
+const divComputerScore = document.querySelector("#computer");
+
+buttons.forEach(button => button.addEventListener("click", function () {
+    result.textContent = playRound(button.id, getComputerChoice());
+
+    divPlayerScore.textContent = playerScore;
+    divComputerScore.textContent = computerScore;
+
+    if (playerScore >= 5 || computerScore >= 5) {
+        if (playerScore > computerScore) {
+            result.textContent += "\n Player Wins!";
+        } else {
+            result.textContent += "\n Computer Wins";
+        }
+    }
+}));
+
