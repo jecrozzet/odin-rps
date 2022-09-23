@@ -18,3 +18,4 @@ Learned CSS Skills:
 Other Learned Skills:
   - Testing
   - Troubleshooting
+  - Git Branch Practice
