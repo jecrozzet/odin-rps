@@ -10,28 +10,7 @@ function getComputerChoice(){
     }
 }
 
-function getPlayerChoice(){
-    let keepGoing = true;
-
-    while (keepGoing){
-        let choice = prompt("Rock\/Paper\/Scissors");
-        if (choice){
-            choice = choice.toLowerCase();
-        }
-
-        if (choice === "rock") {
-            return "Rock";
-        } else if (choice === "paper") {
-            return "Paper";
-        } else if (choice === "scissors") {
-            return "Scissors";
-        } else {
-            alert("False input, try again!");
-        }
-    }
-}
-
-function playRound(playerChoice, computerChoice){
+function calculateRound(playerChoice, computerChoice){
     if (playerChoice === "Rock") {
         switch (computerChoice) {
             case "Rock":
@@ -68,43 +47,58 @@ function playRound(playerChoice, computerChoice){
     }
 }
 
-function game() {
-    for(let i = 0; i < 5 ; i++) {
-        alert("Round " + (i + 1));
-        alert(playRound(getPlayerChoice(), getComputerChoice()));
-    }
+function stopGame() {
+        buttons.forEach(button => button.disabled = true);
 
-    alert("Your Score: " + playerScore + ", Computer Score: " + computerScore);
+        if (playerScore > computerScore) {
+            gameResult.textContent = "Player Wins!";
+        } else {
+            gameResult.textContent = "Computer Wins!";
+        }
 
-    if (playerScore > computerScore) {
-        alert("You Win!");
-    } else if (playerScore < computerScore) {
-        alert("You Lose!");
-    } else {
-        alert("Draw!");
-    }
+        const resultContainer = document.querySelector(".result-container");
+        const replayButton = document.createElement("button");
+        replayButton.textContent = "Play Again";
+        replayButton.id = "replay-button";
+        replayButton.addEventListener("click", function () {
+            playerScore = 0;
+            computerScore = 0;
+
+            roundResult.textContent = "First to 5 Wins!";
+            gameResult.textContent = "";
+            divPlayerScore.textContent = playerScore;
+            divComputerScore.textContent = computerScore;
+
+            resultContainer.removeChild(replayButton);
+            buttons.forEach(button => button.disabled = false);
+        });
+
+        resultContainer.appendChild(replayButton);
+}
+
+function playRound(playerChoice) {
+    //reset animation using reflow and class toggling
+    roundResult.classList.remove("pop");
+    roundResult.offsetHeight;
+    
+    roundResult.textContent = calculateRound(playerChoice, getComputerChoice());
+    roundResult.classList.add("pop");
+
+    divPlayerScore.textContent = playerScore;
+    divComputerScore.textContent = computerScore;
+
+    if (playerScore >= 5 || computerScore >= 5) stopGame();
 }
 
 let playerScore = 0;
 let computerScore = 0;
 
 const buttons = document.querySelectorAll("button");
-const result = document.querySelector("#result");
+const roundResult = document.querySelector("#round-result");
+const gameResult = document.querySelector("#game-result")
 const divPlayerScore = document.querySelector("#player");
 const divComputerScore = document.querySelector("#computer");
 
 buttons.forEach(button => button.addEventListener("click", function () {
-    result.textContent = playRound(button.id, getComputerChoice());
-
-    divPlayerScore.textContent = playerScore;
-    divComputerScore.textContent = computerScore;
-
-    if (playerScore >= 5 || computerScore >= 5) {
-        if (playerScore > computerScore) {
-            result.textContent += "\n Player Wins!";
-        } else {
-            result.textContent += "\n Computer Wins";
-        }
-    }
+    playRound(button.id);
 }));
-
