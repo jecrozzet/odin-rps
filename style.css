@@ -1,0 +1,70 @@
+@keyframes pop {
+    0%      {font-size: 32px;}
+    50%     {font-size: 33px;}
+    100%    {font-size: 32px;}
+}
+
+.pop {
+    animation-name: pop;
+    animation-duration: 0.05s;
+}
+
+body{
+    margin: 0;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding-top: 50px;
+}
+
+.input {
+    width: 200px;
+    height: 200px;
+
+    font-size: 32px;
+}
+
+.result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding: 50px 0px;
+
+    font-size: 32px;
+}
+
+#replay-button {
+    width: 200px;
+    height: 100px;
+
+    font-size: 24px;
+}
+
+.score-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding-bottom: 50px;
+}
+
+.score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    width: 200px;
+    height: 200px;
+
+    font-size: 64px;
+}
+
+.name {
+    padding: 10px 0px;
+
+    text-align: center;
+    font-size: 24px;
+}
